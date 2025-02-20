@@ -5,26 +5,77 @@
     <%- include("../partials/header") %>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
-    <div class="container mx-auto p-5">
-        <h1 class="text-3xl font-bold text-center mb-5 capitalize">
-            <%= pokemon.name %>
-        </h1>
-        <div class="flex flex-col items-center">
-            <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %>" class="w-40 h-40" />
-            <p class="text-lg font-semibold">Height: <%= pokemon.height %>
+<body class="bg-gradient-to-br from-cyan-400 via-sky-400 to-green-300 flex justify-center items-center min-h-screen">
+    <!-- Pokédex Container -->
+    <div class="relative w-96 h-[600px] bg-red-600 rounded-lg border-4 border-black p-5 flex flex-col items-center
+        shadow-[12px_12px_0px_rgba(0,0,0,0.6),_inset_-5px_-5px_10px_rgba(0,0,0,0.3)] 
+        before:absolute left-2 before:w-full before:h-full before:from-red-700 before:to-transparent">
+
+        <!-- Top Buttons -->
+        <div class="absolute top-3 left-3 flex space-x-4">
+            <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-black shadow-md"></div>
+            <div class="w-4 h-4 bg-red-700 rounded-full border-2 border-black shadow-md"></div>
+            <div class="w-4 h-4 bg-yellow-400 rounded-full border-2 border-black shadow-md"></div>
+            <div class="w-4 h-4 bg-green-500 rounded-full border-2 border-black shadow-md"></div>
+        </div>
+
+        <!-- Pokédex Screen -->
+        <div class="bg-gray-900 text-white w-full h-[250px] rounded-lg p-4 mt-8 border-4 border-black shadow-lg 
+            flex flex-col items-center">
+            <h1 class="text-2xl font-bold capitalize">
+                <%= pokemon.name %>
+            </h1>
+            <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %>"
+                class="w-32 h-32 bg-gray-700 p-2 rounded-md shadow-lg mt-2" />
+            <p class="text-xs text-gray-300 mt-2">Height: <%= pokemon.height %> | Weight: <%= pokemon.weight %>
             </p>
-            <p class="text-lg font-semibold">Weight: <%= pokemon.weight %>
-            </p>
-            <p class="text-lg font-semibold">
-                Type: <%= pokemon.types.map(t=> t.type.name).join(', ') %>
+            <p class="text-sm text-yellow-400">Type: <%= pokemon.types.map(t=> t.type.name).join(', ') %></p>
+        </div>
+
+        <!-- Description Box -->
+        <div class="bg-white w-full text-sm p-3 mt-3 rounded shadow-md border-2 border-black">
+            <p class="text-gray-700 font-semibold">Description:</p>
+            <p class="text-gray-600 italic">
+                <%= pokemon.description || "A mysterious Pokémon with unique abilities." %>
             </p>
         </div>
-        <div class="text-center mt-5">
-            <a href="/" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Back</a>
+
+        <!-- D-pad (Centered in a Plus Shape) -->
+        <div class="absolute bottom-16 right-1 transform -translate-x-1/2 flex flex-col items-center">
+            <!-- Top Button -->
+            <div class="w-8 h-8 bg-gray-700 rounded border-2 border-black shadow-md"></div>
+
+            <!-- Middle Row (Left, Center, Right) -->
+            <div class="flex">
+                <div class="w-8 h-8 bg-gray-700 rounded border-2 border-black shadow-md"></div>
+                <div class="w-8 h-8"></div> <!-- Empty Space -->
+                <div class="w-8 h-8 bg-gray-700 rounded border-2 border-black shadow-md"></div>
+            </div>
+
+            <!-- Bottom Button -->
+            <div class="w-8 h-8 bg-gray-700 rounded border-2 border-black shadow-md"></div>
+        </div>
+
+        <!-- Bottom Buttons -->
+        <div class="absolute bottom-38 left-30 flex space-x-3">
+            <div class="w-10 h-3 bg-yellow-400 rounded-full border-2 border-black shadow-md"></div>
+            <div class="w-10 h-3 bg-green-500 rounded-full border-2 border-black shadow-md"></div>
+        </div>
+
+        <!-- Large Circular Button -->
+        <div class="absolute bottom-20 right-70 w-18 h-18 bg-blue-600 rounded-full border-2 border-black shadow-lg">
+        </div>
+
+        <!-- Back Button -->
+        <a href="/" class="absolute bottom-14 right-53 transform translate-x-1/2 px-4 py-2 bg-blue-400 
+            text-white rounded-lg shadow-md border-2 border-black">Back</a>
+
+        <!-- Footer (Now at the bottom inside the Pokédex) -->
+        <div class="absolute bottom-0 left-0 w-full bg-black text-white text-center py-1.5 ">
+            <p class="text-xs">© 2025 Pokédex | Designed by Thirdeey</p>
         </div>
     </div>
-    <%- include("../partials/footer") %>
+
 </body>
 
 </html>
