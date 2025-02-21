@@ -8,7 +8,7 @@ const API_URL = process.env.API_URL
 
 router.get("/", async (req, res) => {
     try {
-        const response = await axios.get(`${API_URL}?limit=20`);
+        const response = await axios.get(`${API_URL}?limit=32`);
         const pokemonList = await Promise.all(response.data.results.map(async (pokemon) => {
             const details = await axios.get(pokemon.url); // Fetch each Pokémon's details
             return {
